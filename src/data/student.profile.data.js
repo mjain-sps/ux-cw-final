@@ -12,7 +12,7 @@ export const studentProfileData = [
     secondaryLanguage: "welsh",
     displayPic: steveDp,
     pecsAssociated: ["pec_1", "pec_2", "pec_3"],
-    favouritePecs: [],
+    favouritePecs: ["pec_1"],
   },
   {
     fullName: "Steve",
@@ -24,6 +24,6 @@ export const studentProfileData = [
     secondaryLanguage: "hindi",
     displayPic: jessicaDp,
     pecsAssociated: ["pec_1", "pec_3"],
-    favouritePecs: ["pec_1"],
+    favouritePecs: ["pec_3"],
   },
 ];

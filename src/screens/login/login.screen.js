@@ -58,7 +58,7 @@ const LoginScreen = () => {
     e.preventDefault();
     const { email, password } = registeredUser[0];
     if (input.email === email && input.password === password) {
-      navigate("/teacher-module");
+      navigate("/choose-profile");
     } else {
       setCredentialErrors("Invalid credentials");
     }

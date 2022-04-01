@@ -8,6 +8,7 @@ import SignupScreen from "./screens/Signup/signup.screens";
 import ChooseStudentProfile from "./screens/choose-profile/choose.student.profile.screens";
 import AddProfile from "./screens/add-profile/add.profile.screens";
 import PecDisplayScreen from "./screens/pec-display/pec.display.screens";
+import PecDetailsScreen from "./screens/pec-details/pec.details.screens";
 const App = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/choose-profile" element={<ChooseStudentProfile />} />
           <Route path="/add-profile" element={<AddProfile />} />
           <Route path="/pec-display/:fullName" element={<PecDisplayScreen />} />
+          <Route path="/pec-detail/:id" element={<PecDetailsScreen />} />
         </Routes>
       </Router>
     </>
