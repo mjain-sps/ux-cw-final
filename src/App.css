@@ -1,0 +1,14 @@
+html {
+  width: 768px;
+  position: relative;
+  min-height: 100vh;
+}
+body {
+  min-height: 100vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid black;
+}
+
+* {
+  box-sizing: border-box;
+}
