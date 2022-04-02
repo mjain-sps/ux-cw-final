@@ -9,6 +9,8 @@ const MasterContainer = styled.div`
     border-radius: 5px;
     border: 1px solid rgba(125, 125, 125, 0.5);
     outline: none;
+    margin: 5px 0;
+    font-size: ${(props) => props.theme.fontSize.small};
     &:focus {
       border: 1px solid orange;
       outline: 2px solid black;

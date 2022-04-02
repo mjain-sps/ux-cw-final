@@ -4,6 +4,7 @@ const MasterContainer = styled.div`
   width: 50px;
   height: 50px;
   cursor: pointer;
+  position: relative;
 
   img {
     width: 100%;
@@ -13,4 +14,7 @@ const MasterContainer = styled.div`
   }
 `;
 
-export { MasterContainer };
+const UserDropDownMenu = styled.div`
+  position: absolute;
+`;
+export { MasterContainer, UserDropDownMenu };

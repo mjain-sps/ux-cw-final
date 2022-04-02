@@ -1,36 +1,81 @@
+import {
+  faPlus,
+  faRightFromBracket,
+  faTable,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { studentProfileData } from "../../data/student.profile.data";
-import { MasterContainer, ProfileCards } from "./choose.profile.styles";
+import {
+  ChooseProfileWrapper,
+  CTACapsule,
+  MasterContainer,
+  ProfileCards,
+  TopCTAPanel,
+} from "./choose.profile.styles";
 
 const ChooseStudentProfile = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
-    <>
-      <Link to="/add-profile">Add Profile</Link>
+    <MasterContainer>
+      <TopCTAPanel>
+        <CTACapsule
+          onClick={() =>
+            navigate("/add-profile", { state: { from: location } })
+          }
+        >
+          <FontAwesomeIcon icon={faPlus} />
+          <p>Add Profile</p>
+        </CTACapsule>
+
+        <CTACapsule
+          onClick={() =>
+            navigate("/add-profile", { state: { from: location } })
+          }
+        >
+          <FontAwesomeIcon icon={faTable} />
+          <p>Dashboard</p>
+        </CTACapsule>
+
+        <CTACapsule
+          onClick={() =>
+            navigate("/add-profile", { state: { from: location } })
+          }
+        >
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          <p>Logout</p>
+        </CTACapsule>
+      </TopCTAPanel>
       {studentProfileData.length ? (
-        <MasterContainer>
+        <ChooseProfileWrapper>
           {studentProfileData.map((profile, index) => {
             return (
               <ProfileCards
                 key={index}
-                onClick={() => navigate(`/pec-display/${profile.fullName}`)}
+                onClick={() =>
+                  navigate(`/pec-display/${profile.fullName}`, {
+                    state: { from: location },
+                  })
+                }
               >
                 <img src={profile.displayPic} />
                 <div>
                   <p>{profile.fullName}</p>
-                  <p>{profile.pecLevel}</p>
+
+                  <span>PEC Level:{profile.pecLevel}</span>
                 </div>
               </ProfileCards>
             );
           })}
-        </MasterContainer>
+        </ChooseProfileWrapper>
       ) : (
         <>
           <h6>No Student Profile found</h6>
         </>
       )}
-    </>
+    </MasterContainer>
   );
 };
 

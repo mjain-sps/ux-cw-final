@@ -1,13 +1,46 @@
 import styled from "styled-components";
 
-const MasterContainer = styled.div`
+const MasterContainer = styled.div``;
+
+const TopCTAPanel = styled.div`
+  background-color: ${(props) => props.theme.similarShadeDarkPanel};
+  height: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 10px;
+`;
+const CTACapsule = styled.div`
+  background-color: ${(props) => props.theme.background};
+  border: 1px solid ${(props) => props.theme.oppositeColor};
+  border-radius: 8px;
+  width: 170px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  p {
+    color: ${(props) => props.theme.text};
+    margin: 0;
+    font-size: ${(props) => props.theme.fontSize.medium};
+  }
+`;
+const ChooseProfileWrapper = styled.div`
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: ${(props) => props.theme.panel};
+  min-height: 700px;
+  padding: 20px;
 `;
 
 const ProfileCards = styled.div`
-  width: 250px;
+  width: 290px;
   height: 200px;
   border-radius: 8px;
   border: 1px solid rgba(125, 125, 125, 0.3);
@@ -17,13 +50,30 @@ const ProfileCards = styled.div`
   align-items: center;
   gap: 10px;
   padding: 10px;
+  background-color: ${(props) => props.theme.background};
   cursor: pointer;
   img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
+    border: 1px solid ${(props) => props.theme.oppositeColor};
+  }
+  p {
+    font-size: ${(props) => props.theme.fontSize.medium};
+    margin: 10px 0;
+    color: ${(props) => props.theme.text};
+  }
+  span {
+    font-size: ${(props) => props.theme.fontSize.small};
+    color: ${(props) => props.theme.text};
   }
 `;
 
-export { ProfileCards, MasterContainer };
+export {
+  ProfileCards,
+  ChooseProfileWrapper,
+  TopCTAPanel,
+  MasterContainer,
+  CTACapsule,
+};

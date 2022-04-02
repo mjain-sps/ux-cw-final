@@ -1,4 +1,5 @@
 import {
+  faChevronLeft,
   faEdit,
   faHeart,
   faPlay,
@@ -6,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Spinner } from "../../components/spinnercomponent/spinner.styles";
 import { pecsData } from "../../data/pecs.data";
 import {
@@ -16,6 +17,7 @@ import {
   PecEdit,
   SoundPlay,
 } from "./pec.details.styles";
+import { studentProfileData } from "../../data/student.profile.data";
 
 import useSound from "use-sound";
 import teddySound from "../../assets/sounds/teddy-audio.m4a";
@@ -28,7 +30,7 @@ const PecDetailsScreen = () => {
   const [playTeddy] = useSound(teddySound);
   const [playLolly] = useSound(lollySound);
 
-  const { id } = useParams();
+  const { id, fullName } = useParams();
   useEffect(() => {
     if (id) {
       const pecFound = pecsData.find((pec) => pec._id === id);
@@ -38,6 +40,8 @@ const PecDetailsScreen = () => {
     }
   }, [id]);
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleSoundPlay = (e) => {
     e.preventDefault();
     if (pec._id === "pec_1") {
@@ -48,18 +52,48 @@ const PecDetailsScreen = () => {
       playLolly();
     }
   };
+
+  const handleAddToFavs = () => {
+    const studentFound = studentProfileData.find(
+      (st) => st.fullName === fullName
+    );
+    if (studentFound) {
+      if (!studentFound.favouritePecs.find((fav) => fav === pec._id)) {
+        studentFound.favouritePecs.push(pec._id);
+        console.log(studentFound);
+      } else {
+        studentFound.favouritePecs = studentFound.favouritePecs.filter(
+          (fav) => fav !== pec._id
+        );
+      }
+    }
+  };
   return (
     <>
       {pec ? (
         <>
           <MasterContainer>
+            <span className="back-button">
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                onClick={() => navigate(location.state.from.pathname)}
+              />
+            </span>
             <h1>{pec.name}</h1>
+            <h3>{pec.category}</h3>
             <img src={pec.picture} />
 
             <FooterSection>
               <PecEdit>
                 <FontAwesomeIcon icon={faTrash} />
-                <FontAwesomeIcon icon={faEdit} />
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  onClick={() =>
+                    navigate(`/edit-pec/${pec._id}/${fullName}`, {
+                      state: { from: location },
+                    })
+                  }
+                />
               </PecEdit>
               <SoundPlay>
                 <button onClick={handleSoundPlay}>
@@ -67,7 +101,10 @@ const PecDetailsScreen = () => {
                 </button>
               </SoundPlay>
               <AddToFavs>
-                <FontAwesomeIcon icon={faHeart} />
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  onClick={() => handleAddToFavs()}
+                />
               </AddToFavs>
             </FooterSection>
           </MasterContainer>

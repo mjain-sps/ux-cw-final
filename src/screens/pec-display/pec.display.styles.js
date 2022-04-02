@@ -1,5 +1,12 @@
 import styled from "styled-components";
+
+const MasterContainer = styled.div`
+  background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.text};
+  position: relative;
+`;
 const MainPecsDisplaySection = styled.div`
+  height: 600px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -29,4 +36,4 @@ const PecDisplayCard = styled.div`
   }
 `;
 
-export { PecDisplayCard, MainPecsDisplaySection };
+export { PecDisplayCard, MainPecsDisplaySection, MasterContainer };

@@ -5,7 +5,6 @@ const MasterHeader = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 60px;
-  border: 1px solid black;
   position: relative;
   img {
     position: absolute;
@@ -16,6 +15,7 @@ const MasterHeader = styled.div`
     border-radius: 50%;
   }
   h4 {
+    font-size: ${(props) => props.theme.fontSize.large};
     text-align: center;
     padding: 0;
     margin: 0;

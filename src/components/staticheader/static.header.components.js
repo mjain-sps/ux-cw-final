@@ -1,6 +1,6 @@
 import React from "react";
 import { MasterHeader } from "./static.header.styles";
-import pecLogo from "../../assets/pecs-logo.png";
+import pecLogo from "../../assets/pec-logo.png";
 const StaticHeader = () => {
   return (
     <>

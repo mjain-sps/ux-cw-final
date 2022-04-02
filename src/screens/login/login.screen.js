@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { themeContext } from "../../App";
 import ButtonComponent from "../../components/buttoncomponent/button.components";
 import InputComponent from "../../components/inputcomponent/input.components";
 import SpinnerComponent from "../../components/spinnercomponent/spinner.components";
@@ -69,6 +70,7 @@ const LoginScreen = () => {
       setValidated(true);
     }
   }, [passwordError, emailError]);
+
   return (
     <>
       <MasterContainer>
@@ -78,6 +80,7 @@ const LoginScreen = () => {
             <h4>Login</h4>
             <p>{credentialError}</p>
           </div>
+
           <InputGroupContainer>
             <label>Email</label>
             <InputComponent
@@ -110,10 +113,11 @@ const LoginScreen = () => {
           >
             Login
           </ButtonComponent>
-          {/* <SpinnerComponent /> */}
-        </LoginContainer>
 
-        <Footer>Need an account?</Footer>
+          <Footer>
+            Need an account? <Link to="/signup">Sign up</Link>
+          </Footer>
+        </LoginContainer>
       </MasterContainer>
     </>
   );

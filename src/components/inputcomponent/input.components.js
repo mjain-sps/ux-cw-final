@@ -1,7 +1,14 @@
 import React from "react";
 import { MasterContainer } from "./input.styles";
 
-const InputComponent = ({ type, placeholder, value, name, onChange }) => {
+const InputComponent = ({
+  type,
+  placeholder,
+  value,
+  name,
+  onChange,
+  disabled,
+}) => {
   return (
     <MasterContainer>
       <input
@@ -10,6 +17,7 @@ const InputComponent = ({ type, placeholder, value, name, onChange }) => {
         type={type}
         value={value}
         onChange={onChange}
+        disabled={disabled ? true : false}
       />
     </MasterContainer>
   );

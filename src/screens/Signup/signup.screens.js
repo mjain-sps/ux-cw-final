@@ -158,11 +158,10 @@ const SignupScreen = () => {
             Signup
           </ButtonComponent>
           {/* <SpinnerComponent /> */}
+          <Footer>
+            Already have an account? <Link to="/">Login</Link>
+          </Footer>
         </LoginContainer>
-
-        {/* <Footer>
-          Need an account? <Link path="/signup">Signup</Link>
-        </Footer> */}
       </MasterContainer>
     </>
   );
