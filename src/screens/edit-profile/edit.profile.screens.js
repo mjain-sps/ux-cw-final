@@ -1,7 +1,11 @@
-import { faCamera, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCamera,
+  faChevronLeft,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ButtonComponent from "../../components/buttoncomponent/button.components";
 import CameraComponent from "../../components/cameracomponent/camera.components";
 import InputComponent from "../../components/inputcomponent/input.components";
@@ -9,16 +13,48 @@ import { studentProfileData } from "../../data/student.profile.data";
 import {
   BackButtonContainer,
   BackButtonWrapper,
+  DeleteStudentProfile,
   InputGroupContainer,
   MasterContainer,
   ProfilePicPreviewContainer,
   ProfilePicureWrapper,
   TwoColumnInputGroups,
-} from "./add.profile.styles";
+} from "./edit.profile.styles";
 import imgFile from "../../assets/profile-pic-boy.jpeg";
 import blankDisplayPic from "../../assets/blank-dp.jpeg";
+import SmallModal from "../../components/SmallModalComponent/small.modal";
 
-const AddProfile = () => {
+const EditProfile = () => {
+  const { fullName } = useParams();
+
+  useEffect(() => {
+    if (fullName) {
+      const studentData = studentProfileData.find(
+        (st) => st.fullName === fullName
+      );
+      if (studentData) {
+        const {
+          fullName,
+          guardianEmail,
+          guardianName,
+          pecLevel,
+          age,
+          primaryLanguage,
+          secondaryLanguage,
+        } = studentData;
+        setInput({
+          ...input,
+          fullName,
+          guardianName,
+          guardianEmail,
+          pecLevel,
+          age,
+          primaryLanguage,
+          secondaryLanguage,
+        });
+      }
+    }
+  }, [fullName]);
   const [input, setInput] = useState({
     fullName: "",
     guardianName: "",
@@ -36,7 +72,8 @@ const AddProfile = () => {
   const [cameraToggle, setCameraToggle] = useState(false);
   const [picureAccepted, setPictureAccepted] = useState(false);
   const [validated, setValidated] = useState(false);
-
+  const [displayModal, setDisplayModal] = useState(false);
+  const [modalConfirmation, setModalConfirmation] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
@@ -117,37 +154,47 @@ const AddProfile = () => {
     input,
   ]);
 
-  const handleAddProfile = (e) => {
+  const handleEditProfile = (e) => {
     e.preventDefault();
-    const {
-      fullName,
-      guardianName,
-      guardianEmail,
-      age,
-      pecLevel,
-      primaryLanguage,
-      secondaryLanguage,
-    } = input;
-    const payload = {
-      fullName,
-      guardianName,
-      guardianEmail,
-      age,
-      primaryLanguage,
-      secondaryLanguage: secondaryLanguage || "",
-      pecLevel: pecLevel || "",
-      displayPic: imgFile || blankDisplayPic,
-    };
-    studentProfileData.push(payload);
-    navigate("/choose-profile");
+
+    const studentProfile = studentProfileData.find(
+      (st) => st.fullName === fullName
+    );
+    studentProfile["fullName"] = input.fullName;
+    studentProfile["guardianName"] = input.guardianName;
+    studentProfile["guardianEmail"] = input.guardianEmail;
+    studentProfile["age"] = input.age;
+    studentProfile["pecLevel"] = input.pecLevel || "";
+    studentProfile["primaryLanguage"] = input.primaryLanguage;
+    studentProfile["secondaryLanguage"] = input.secondaryLanguage || "";
+
+    navigate(`/pec-display/${studentProfile.fullName}`);
   };
 
+  //To delete the student
+  useEffect(() => {
+    if (modalConfirmation) {
+      console.log("entering here");
+      const indexFound = studentProfileData.findIndex(
+        (st) => st.fullName === fullName
+      );
+      studentProfileData.splice(indexFound, 1);
+      navigate("/choose-profile");
+    }
+  }, [modalConfirmation]);
+
+  console.log(modalConfirmation);
   return (
     <>
       <MasterContainer>
         <div>
-          <h4>Add Student Profile</h4>
+          <h4>Edit Student Profile</h4>
         </div>
+
+        <DeleteStudentProfile onClick={() => setDisplayModal(true)}>
+          <span>Delete</span>
+          <FontAwesomeIcon icon={faTrash} />
+        </DeleteStudentProfile>
 
         {/* Full Name Input */}
         <InputGroupContainer>
@@ -261,18 +308,18 @@ const AddProfile = () => {
             ""
           )}
           <ProfilePicPreviewContainer>
-            <img src={picureAccepted ? imgFile : blankDisplayPic} />
+            <img src={picureAccepted ? imgFile : imgFile} />
           </ProfilePicPreviewContainer>
         </ProfilePicureWrapper>
 
         <BackButtonWrapper>
           <ButtonComponent
             type="button"
-            onClick={handleAddProfile}
+            onClick={handleEditProfile}
             name="add-profile-cta"
             disabled={validated ? false : true}
           >
-            Add
+            Update
           </ButtonComponent>
         </BackButtonWrapper>
         <BackButtonContainer
@@ -281,8 +328,17 @@ const AddProfile = () => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </BackButtonContainer>
       </MasterContainer>
+      {displayModal ? (
+        <SmallModal
+          modalBodyContent="Are you sure ?"
+          setModalConfirmation={setModalConfirmation}
+          setDisplayModal={setDisplayModal}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
 
-export default AddProfile;
+export default EditProfile;

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InputComponent from "../../components/inputcomponent/input.components";
-import MasterComponent from "./add.new.pec.screen.styles";
+import {
+  MasterComponent,
+  InputGroupContainer,
+} from "./add.new.pec.screen.styles";
 import applePic from "../../assets/pecs/fruits/apple.jpeg";
 import appleSound from "../../assets/sounds/apple-sound.m4a";
 import ButtonComponent from "../../components/buttoncomponent/button.components";
@@ -38,8 +41,10 @@ const AddNewPecScreen = () => {
     });
   };
 
+  console.log(input);
   const handlePecSave = (e) => {
     e.preventDefault();
+
     pecsData.push({
       _id: `pec_${pecsData.length + 1}`,
       name: input.title,
@@ -56,7 +61,6 @@ const AddNewPecScreen = () => {
     } else {
       studentObject["pecsAssociated"] = [`pec_${pecsData.length}`];
     }
-    console.log(studentObject);
     navigate(`/pec-display/${fullName}`);
   };
 
@@ -64,13 +68,17 @@ const AddNewPecScreen = () => {
     <>
       {fullName && pecsAssociated ? (
         <MasterComponent>
-          <InputComponent
-            type="text"
-            name="title"
-            placeholder="Enter PEC title/name here"
-            onChange={handleInputChange}
-            value={input.title}
-          />
+          <h4>Add New PEC</h4>
+          <InputGroupContainer>
+            <label>PEC Title/name</label>
+            <InputComponent
+              type="text"
+              name="title"
+              placeholder="Enter PEC title/name here"
+              onChange={handleInputChange}
+              value={input.title}
+            />
+          </InputGroupContainer>
           {pecsAssociated.length ? (
             <select onChange={(e) => setCategorySelected(e.target.value)}>
               <option value="">Select Pec category</option>
@@ -88,21 +96,27 @@ const AddNewPecScreen = () => {
           )}
 
           <h6>OR Add New Category here</h6>
-          <InputComponent
-            type="text"
-            name="category"
-            placeholder="Enter PEC category here"
-            onChange={handleInputChange}
-            value={input.category}
-            disabled={categorySelected ? true : false}
-          />
+
+          <InputGroupContainer>
+            <label>PEC Title/name</label>
+            <InputComponent
+              type="text"
+              name="category"
+              placeholder="Enter PEC category here"
+              onChange={handleInputChange}
+              value={input.category}
+              disabled={categorySelected ? true : false}
+            />
+          </InputGroupContainer>
 
           <img src={applePic} />
           <ButtonComponent
             type="button"
             onClick={handlePecSave}
             name="add-pec-button"
-            disabled={fullName ? false : true}
+            disabled={
+              (input.title && input.category) || categorySelected ? false : true
+            }
           >
             Save
           </ButtonComponent>

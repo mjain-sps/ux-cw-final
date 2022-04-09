@@ -19,14 +19,23 @@ const SmallModal = ({
           onClick={() => setDisplayModal(false)}
         />
         <h4>{modalBodyContent}</h4>
-        <p
-          onClick={() => {
-            setDisplayModal(false);
-            setModalConfirmation(true);
-          }}
-        >
-          Confirm
-        </p>
+        <div>
+          <span
+            onClick={() => {
+              setDisplayModal(false);
+              setModalConfirmation(true);
+            }}
+          >
+            Yes
+          </span>
+          <span
+            onClick={() => {
+              setDisplayModal(false);
+            }}
+          >
+            No
+          </span>
+        </div>
       </ModalBox>
     </MasterContainer>
   );

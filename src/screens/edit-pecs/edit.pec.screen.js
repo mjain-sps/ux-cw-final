@@ -39,6 +39,7 @@ const EditPecScreen = () => {
       {pecToBeEdited ? (
         <>
           <MasterContainer>
+            <h4>Edit PEC Name/Category</h4>
             <InputGroupContainer>
               <label>Enter Pec Title/Name</label>
               <InputComponent

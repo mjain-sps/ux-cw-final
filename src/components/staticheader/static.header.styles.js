@@ -22,6 +22,7 @@ const MasterHeader = styled.div`
     height: 60px;
     line-height: 60px;
     width: 100%;
+    color: ${(props) => props.theme.text};
   }
 `;
 

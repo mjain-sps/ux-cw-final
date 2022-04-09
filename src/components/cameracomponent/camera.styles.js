@@ -7,10 +7,11 @@ const MasterContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 10;
+  background-color: #fff;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
   .close-camera {
     position: absolute;

@@ -26,7 +26,13 @@ const FooterComponent = ({
     <>
       <MasterContainer>
         <BackButtonContainer
-          onClick={() => navigate(location.state.from.pathname)}
+          onClick={() =>
+            navigate(
+              location.state?.from?.pathname
+                ? location.state.from.pathname
+                : "/choose-profile"
+            )
+          }
         >
           <FontAwesomeIcon icon={faChevronCircleLeft} />
         </BackButtonContainer>

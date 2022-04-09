@@ -20,15 +20,20 @@ const LoginContainer = styled.div`
     font-size: ${(props) => props.theme.fontSize.large};
     text-align: center;
     margin: 0;
+    color: ${(props) => props.theme.text};
   }
   p {
     margin: 10px;
     color: red;
     text-align: center;
   }
+  label {
+    color: ${(props) => props.theme.text};
+    font-size: ${(props) => props.theme.fontSize.medium};
+  }
   button {
-    background-color: ${(props) => props.theme.button.primary};
-    color: #ffffff;
+    background-color: ${(props) => props.theme.similarShadeDarkPanel};
+    color: ${(props) => props.theme.text};
     font-size: ${(props) => props.theme.fontSize.medium};
     border: 2px solid ${(props) => props.theme.oppositeColor};
   }

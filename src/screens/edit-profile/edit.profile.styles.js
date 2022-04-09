@@ -5,6 +5,7 @@ const MasterContainer = styled.div`
   margin: auto;
   background-color: ${(props) => props.theme.panel};
   padding: 15px 10px;
+  position: relative;
 
   h4 {
     font-size: ${(props) => props.theme.fontSize.large};
@@ -34,16 +35,17 @@ const BackButtonWrapper = styled.div`
 `;
 const BackButtonContainer = styled.div`
   position: absolute;
-  left: 90px;
+  left: 5px;
   height: 40px;
-  line-height: 10px;
+  line-height: 8px;
   font-size: 32px;
   background-color: ${(props) => props.theme.contrastPanel.bg};
   color: ${(props) => props.theme.contrastPanel.color};
   border: 1px solid black;
   padding: 5px 10px;
   cursor: pointer;
-  bottom: 40px;
+  bottom: 35px;
+  border-radius: 5px;
 `;
 const InputGroupContainer = styled.div`
   span {
@@ -86,6 +88,25 @@ const ProfilePicureWrapper = styled.div`
     cursor: pointer;
   }
 `;
+const DeleteStudentProfile = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  background-color: red;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  span {
+    margin-right: 5px;
+    color: black;
+  }
+`;
 export {
   MasterContainer,
   InputGroupContainer,
@@ -94,4 +115,5 @@ export {
   ProfilePicureWrapper,
   BackButtonContainer,
   BackButtonWrapper,
+  DeleteStudentProfile,
 };

@@ -12,6 +12,7 @@ import { Spinner } from "../../components/spinnercomponent/spinner.styles";
 import { pecsData } from "../../data/pecs.data";
 import {
   AddToFavs,
+  BackButtonWrapper,
   FooterSection,
   MasterContainer,
   PecEdit,
@@ -26,16 +27,28 @@ import milkSound from "../../assets/sounds/milk-sound.m4a";
 
 const PecDetailsScreen = () => {
   const [pec, setPec] = useState(null);
+  const [inFavourites, setInFavourites] = useState(false);
   const [playMilk] = useSound(milkSound);
   const [playTeddy] = useSound(teddySound);
   const [playLolly] = useSound(lollySound);
 
   const { id, fullName } = useParams();
   useEffect(() => {
-    if (id) {
+    if (id && fullName) {
       const pecFound = pecsData.find((pec) => pec._id === id);
       if (pecFound) {
         setPec(pecFound);
+        const studentFound = studentProfileData.find(
+          (st) => st.fullName === fullName
+        );
+        if (studentFound) {
+          const checkIfFavExists = studentFound.favouritePecs.find(
+            (favPec) => favPec === pecFound._id
+          );
+          if (checkIfFavExists) {
+            setInFavourites(true);
+          }
+        }
       }
     }
   }, [id]);
@@ -54,6 +67,7 @@ const PecDetailsScreen = () => {
   };
 
   const handleAddToFavs = () => {
+    setInFavourites(!inFavourites);
     const studentFound = studentProfileData.find(
       (st) => st.fullName === fullName
     );
@@ -68,24 +82,27 @@ const PecDetailsScreen = () => {
       }
     }
   };
+  console.log(pec);
   return (
     <>
       {pec ? (
         <>
           <MasterContainer>
-            <span className="back-button">
-              <FontAwesomeIcon
-                icon={faChevronLeft}
-                onClick={() => navigate(location.state.from.pathname)}
-              />
-            </span>
-            <h1>{pec.name}</h1>
-            <h3>{pec.category}</h3>
+            <FontAwesomeIcon icon={faTrash} className="delete-pec-cta" />
+            <h4>{pec.name}</h4>
+            <h6>{pec.category}</h6>
             <img src={pec.picture} />
 
             <FooterSection>
+              <BackButtonWrapper>
+                <span className="back-button">
+                  <FontAwesomeIcon
+                    icon={faChevronLeft}
+                    onClick={() => navigate(location.state.from.pathname)}
+                  />
+                </span>
+              </BackButtonWrapper>
               <PecEdit>
-                <FontAwesomeIcon icon={faTrash} />
                 <FontAwesomeIcon
                   icon={faEdit}
                   onClick={() =>
@@ -104,6 +121,7 @@ const PecDetailsScreen = () => {
                 <FontAwesomeIcon
                   icon={faHeart}
                   onClick={() => handleAddToFavs()}
+                  className={inFavourites ? "fav-pec" : ""}
                 />
               </AddToFavs>
             </FooterSection>

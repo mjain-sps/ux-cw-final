@@ -7,14 +7,18 @@ const MasterContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  background-color: #ffcc80;
 `;
 
 const Logo = styled.div`
   width: 100px;
   height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
-    width: 100%;
-    height: 100%;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
   }
 `;
