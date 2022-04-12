@@ -22,7 +22,7 @@ const StudentHelpCTAPanel = ({ pecLevel, setQuickActionCTAImage }) => {
     <StudenPaneWrapper>
       <h4>
         {language === "english"
-          ? "Quick CTA Panel"
+          ? "Quick Action Panel"
           : "Panel de llamada a la acción rápida"}
       </h4>
       {pecLevel === 1 ? (

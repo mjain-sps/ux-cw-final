@@ -12,7 +12,7 @@ const TopCTAPanel = styled.div`
   margin-bottom: 10px;
 `;
 const CTACapsule = styled.div`
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.oppositeColor};
   border: 1px solid ${(props) => props.theme.oppositeColor};
   border-radius: 8px;
   width: 170px;
@@ -21,9 +21,10 @@ const CTACapsule = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  color: ${(props) => props.theme.background};
   cursor: pointer;
   p {
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.background};
     margin: 0;
     font-size: ${(props) => props.theme.fontSize.medium};
   }
@@ -35,7 +36,7 @@ const ChooseProfileWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   background-color: ${(props) => props.theme.panel};
-  min-height: 700px;
+  height: calc(1024px - 100px);
   padding: 20px;
 `;
 

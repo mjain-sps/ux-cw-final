@@ -18,6 +18,9 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/Themes";
 import AdminPanel from "./screens/admin-panel/admin.panels.screen";
 import EditProfile from "./screens/edit-profile/edit.profile.screens";
+import SearchingDevice from "./screens/searching-device/searching.device";
+import StudentInterfacePecDisplayPage from "./screens/student-interface/student.interface.pec-display";
+import SubscriptionScreen from "./screens/subscription-plan/subscription.plan";
 
 export const currentTheme = createContext();
 const App = () => {
@@ -51,6 +54,12 @@ const App = () => {
               element={<EditPecScreen />}
             />
             <Route path="/dashboard" element={<AdminPanel />} />
+            <Route path="/searching-device" element={<SearchingDevice />} />
+            <Route
+              path="/student-interface"
+              element={<StudentInterfacePecDisplayPage />}
+            />
+            <Route path="/subscription-plan" element={<SubscriptionScreen />} />
           </Routes>
         </Router>
       </ThemeProvider>

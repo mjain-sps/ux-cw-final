@@ -23,6 +23,7 @@ const UserDropDownMenu = styled.div`
   right: 0;
   background-color: ${(props) => props.theme.contrastPanel.bg};
   border-radius: 5px;
+  z-index: 30;
   ul {
     display: flex;
     flex-direction: column;

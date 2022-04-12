@@ -6,7 +6,7 @@ const StudenPaneWrapper = styled.div`
   h4 {
     background-color: ${(props) => props.theme.similarShadeDarkPanel};
     font-size: ${(props) => props.theme.fontSize.medium};
-    color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.oppositeColor};
     padding: 10px;
     border-radius: 8px;
   }
@@ -43,8 +43,7 @@ const SectionForPecLevel3 = styled.div`
   height: 65px;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  gap: 10px;
+  justify-content: space-evenly;
   align-items: center;
   img {
     height: 100%;

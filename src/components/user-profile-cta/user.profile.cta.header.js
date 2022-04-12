@@ -3,6 +3,8 @@ import { currentLanguage, currentTheme } from "../../App";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { MasterContainer, UserDropDownMenu } from "./user.profile.cta.styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const UserProfileCTAHeader = ({
   user,
@@ -43,10 +45,14 @@ const UserProfileCTAHeader = ({
               ""
             )}
 
+            <li onClick={() => navigate("/searching-device")}>
+              ON Student Interface
+            </li>
+
             <li onClick={() => navigate("/dashboard")}>Dashboard</li>
 
             <li onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-              Dark Theme
+              {theme === "light" ? "Dark Theme" : "Light Theme"}
             </li>
             <li
               onClick={() =>
@@ -60,7 +66,20 @@ const UserProfileCTAHeader = ({
                 : "Translate in English"}
             </li>
 
-            <li onClick={() => navigate("/", { replace: true })}>Logout</li>
+            <li
+              onClick={() =>
+                navigate("/subscription-plan", { state: { from: location } })
+              }
+            >
+              Subscription Details
+            </li>
+            <li
+              onClick={() =>
+                navigate("/", { replace: true, state: { from: location } })
+              }
+            >
+              Logout
+            </li>
           </ul>
         </UserDropDownMenu>
       ) : (

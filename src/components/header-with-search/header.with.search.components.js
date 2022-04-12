@@ -1,7 +1,7 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import InputComponent from "../inputcomponent/input.components";
 import { Logo, MasterContainer } from "./header.search.styles";
 import pecLogo from "../../assets/pec-logo.png";
@@ -11,10 +11,15 @@ const HeaderWithSearch = ({ searchKeyword, handleOnChange, user }) => {
   const [displayDropDown, setDisplayDropDown] = useState(false);
   const location = useLocation();
   const { language } = useContext(currentTheme);
+  const navigate = useNavigate();
   return (
     <MasterContainer>
       <Logo>
-        <img src={pecLogo} />
+        <img
+          src={pecLogo}
+          onClick={() => navigate("/choose-profile")}
+          style={{ cursor: "pointer" }}
+        />
       </Logo>
       <InputComponent
         type="search"

@@ -24,10 +24,14 @@ import useSound from "use-sound";
 import teddySound from "../../assets/sounds/teddy-audio.m4a";
 import lollySound from "../../assets/sounds/lolly-sound.m4a";
 import milkSound from "../../assets/sounds/milk-sound.m4a";
+import SmallModal from "../../components/SmallModalComponent/small.modal";
 
 const PecDetailsScreen = () => {
   const [pec, setPec] = useState(null);
   const [inFavourites, setInFavourites] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
+  const [modalConfirmation, setModalConfirmation] = useState(false);
+
   const [playMilk] = useSound(milkSound);
   const [playTeddy] = useSound(teddySound);
   const [playLolly] = useSound(lollySound);
@@ -74,7 +78,6 @@ const PecDetailsScreen = () => {
     if (studentFound) {
       if (!studentFound.favouritePecs.find((fav) => fav === pec._id)) {
         studentFound.favouritePecs.push(pec._id);
-        console.log(studentFound);
       } else {
         studentFound.favouritePecs = studentFound.favouritePecs.filter(
           (fav) => fav !== pec._id
@@ -82,13 +85,25 @@ const PecDetailsScreen = () => {
       }
     }
   };
-  console.log(pec);
+
+  useEffect(() => {
+    if (modalConfirmation) {
+      const indexFound = pecsData.findIndex((st) => st._id === pec._id);
+      pecsData.splice(indexFound, 1);
+      navigate(location.state.from.pathname, { replace: true });
+    }
+  }, [modalConfirmation]);
+
   return (
     <>
       {pec ? (
         <>
           <MasterContainer>
-            <FontAwesomeIcon icon={faTrash} className="delete-pec-cta" />
+            {/* <FontAwesomeIcon
+              icon={faTrash}
+              className="delete-pec-cta"
+              onClick={() => setDisplayModal(true)}
+            /> */}
             <h4>{pec.name}</h4>
             <h6>{pec.category}</h6>
             <img src={pec.picture} />
@@ -126,6 +141,15 @@ const PecDetailsScreen = () => {
               </AddToFavs>
             </FooterSection>
           </MasterContainer>
+          {displayModal ? (
+            <SmallModal
+              modalBodyContent="Are you sure?"
+              setDisplayModal={setDisplayModal}
+              setModalConfirmation={setModalConfirmation}
+            />
+          ) : (
+            ""
+          )}
         </>
       ) : (
         <Spinner />

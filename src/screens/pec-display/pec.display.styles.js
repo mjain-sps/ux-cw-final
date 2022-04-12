@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 const MasterContainer = styled.div`
   background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.text};
+
   position: relative;
   h4 {
     text-align: center;
     margin: 8px;
+    color: ${(props) => props.theme.oppositeColor};
+    font-size: ${(props) => props.theme.fontSize.large};
   }
   .pec_card {
     width: 145px;
@@ -23,10 +25,10 @@ const MasterContainer = styled.div`
       text-align: center;
       margin: 5px 0px;
       background-color: ${(props) => props.theme.similarShadeDarkPanel};
-      color: ${(props) => props.theme.background};
+      color: ${(props) => props.theme.oppositeColor};
+      font-size: ${(props) => props.theme.fontSize.small};
       width: 100%;
       margin: 0;
-      font-size: ${(props) => props.theme.fontSize.small};
       padding: 10px;
     }
     img {
@@ -60,8 +62,8 @@ const MainPecsDisplaySection = styled.div`
 const PecDisplayPanelHeader = styled.div`
   h4 {
     background-color: ${(props) => props.theme.similarShadeDarkPanel};
-    font-size: ${(props) => props.theme.fontSize.medium};
-    color: ${(props) => props.theme.background};
+    font-size: ${(props) => props.theme.fontSize.large};
+    color: ${(props) => props.theme.oppositeColor};
     padding: 10px;
     border-radius: 8px;
     text-align: center;
@@ -83,7 +85,7 @@ const PecDisplayCard = styled.div`
     text-align: center;
     margin: 5px 0px;
     background-color: ${(props) => props.theme.similarShadeDarkPanel};
-    color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.oppositeColor};
     width: 100%;
     margin: 0;
     font-size: ${(props) => props.theme.fontSize.small};

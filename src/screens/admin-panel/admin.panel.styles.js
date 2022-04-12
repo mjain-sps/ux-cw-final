@@ -3,7 +3,7 @@ import styled from "styled-components";
 const MasterContainer = styled.div`
   position: relative;
   width: 100%;
-  min-height: 800px;
+  height: 1024px;
   background-color: ${(props) => props.theme.panel};
   display: flex;
   justify-content: center;
@@ -25,11 +25,11 @@ const AdminPanelInfoCard = styled.div`
   height: 200px;
   width: 250px;
   h4 {
-    font-size: ${(props) => props.theme.fontSize.medium};
+    font-size: ${(props) => props.theme.fontSize.large};
     margin: 10px 0;
   }
   p {
-    font-size: ${(props) => props.theme.fontSize.small};
+    font-size: ${(props) => props.theme.fontSize.large};
     margin: 10px 0;
   }
 `;
@@ -40,10 +40,12 @@ const BackButtonWrapper = styled.div`
   height: 60px;
   top: 20px;
   left: 20px;
+  background-color: ${(props) => props.theme.oppositeColor};
   border: 1px solid ${(props) => props.theme.oppositeColor};
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${(props) => props.theme.background};
   cursor: pointer;
   .go-back {
     font-size: 32px;

@@ -7,7 +7,7 @@ const MasterContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 30px;
-  height: 880px;
+  height: 1024px;
   background-color: ${(props) => props.theme.panel};
   position: relative;
   h4 {
@@ -17,7 +17,7 @@ const MasterContainer = styled.div`
     width: 80%;
     padding: 10px;
     border-radius: 8px;
-    color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.oppositeColor};
   }
   h6 {
     background-color: ${(props) => props.theme.contrastPanel.bg};

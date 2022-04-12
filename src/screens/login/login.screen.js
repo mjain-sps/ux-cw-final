@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { themeContext } from "../../App";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
 import ButtonComponent from "../../components/buttoncomponent/button.components";
 import InputComponent from "../../components/inputcomponent/input.components";
-import SpinnerComponent from "../../components/spinnercomponent/spinner.components";
+
 import StaticHeader from "../../components/staticheader/static.header.components";
+import ToastComponent from "../../components/toast-component/toast.components";
 import { registeredUser } from "../../data/user.data";
 import {
   Footer,
@@ -20,8 +21,10 @@ const LoginScreen = () => {
   const [passwordError, setPasswordError] = useState("");
   const [validated, setValidated] = useState(false);
   const [credentialError, setCredentialErrors] = useState("");
+  const [displayToast, setDisplayToast] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   //define functions here
 
@@ -59,7 +62,7 @@ const LoginScreen = () => {
     e.preventDefault();
     const { email, password } = registeredUser[0];
     if (input.email === email && input.password === password) {
-      navigate("/choose-profile");
+      navigate("/choose-profile", { state: { from: location } });
     } else {
       setCredentialErrors("Invalid credentials");
     }
@@ -71,8 +74,27 @@ const LoginScreen = () => {
     }
   }, [passwordError, emailError]);
 
+  useEffect(() => {
+    if (location.state?.from?.pathname === "/choose-profile") {
+      setDisplayToast(true);
+
+      setTimeout(() => {
+        setDisplayToast(false);
+      }, 2000);
+    }
+  }, [location]);
+
   return (
     <>
+      {displayToast ? (
+        <ToastComponent
+          role="SUCCESS"
+          message="You have successfully logged out"
+        />
+      ) : (
+        ""
+      )}
+
       <MasterContainer>
         <StaticHeader />
         <LoginContainer>
@@ -102,6 +124,7 @@ const LoginScreen = () => {
               onChange={handleInputChange}
               name="password"
             />
+            <p>{passwordError}</p>
           </InputGroupContainer>
 
           <ButtonComponent
