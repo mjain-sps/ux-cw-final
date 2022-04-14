@@ -8,6 +8,8 @@ const InputComponent = ({
   name,
   onChange,
   disabled,
+  min,
+  max,
 }) => {
   return (
     <MasterContainer>
@@ -18,6 +20,8 @@ const InputComponent = ({
         value={value}
         onChange={onChange}
         disabled={disabled ? true : false}
+        min={min}
+        max={max}
       />
     </MasterContainer>
   );

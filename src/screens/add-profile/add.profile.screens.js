@@ -199,6 +199,8 @@ const AddProfile = () => {
               type="number"
               value={input.pecLevel}
               name="pecLevel"
+              min="1"
+              max="6"
               onChange={handleInputChange}
               placeholder="Enter PEC level - if applicable"
             />
