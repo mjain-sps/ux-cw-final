@@ -153,15 +153,15 @@ const PecDisplayCardInteractive = styled.div`
     text-align: center;
     margin: 5px 0px;
     background-color: ${(props) => props.theme.similarShadeDarkPanel};
-    color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.oppositeColor};
     width: 100%;
     margin: 0;
     font-size: ${(props) => props.theme.fontSize.small};
     padding: 10px;
   }
   img {
-    width: 145px;
-    height: 145px;
+    width: 143px;
+    height: 143px;
     object-fit: contain;
   }
   p {

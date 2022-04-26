@@ -60,12 +60,19 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const { email, password } = registeredUser[0];
-    if (input.email === email && input.password === password) {
-      navigate("/choose-profile", { state: { from: location } });
-    } else {
-      setCredentialErrors("Invalid credentials");
+    // const { email, password } = registeredUser[0];
+    // if (input.email === email && input.password === password) {
+    const userFound = registeredUser.find((usr) => usr.email === input.email);
+    if (userFound) {
+      if (userFound.password === input.password) {
+        navigate("/choose-profile", { state: { from: location } });
+      } else {
+        setCredentialErrors("Invalid credentials");
+      }
     }
+    // } else {
+    //   setCredentialErrors("Invalid credentials");
+    // }
   };
 
   useEffect(() => {

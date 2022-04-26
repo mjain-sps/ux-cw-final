@@ -13,6 +13,10 @@ const MasterContainer = styled.div`
     height: 100%;
     object-fit: contain;
   }
+  .picture-click {
+    opacity: 0.4;
+  }
+
   .close-camera {
     position: absolute;
     left: 20px;
@@ -50,6 +54,7 @@ const ImagePreview = styled.div`
   height: 100px;
   width: 100px;
   z-index: 20;
+  cursor: pointer;
   img {
     width: 100% !important;
     height: 100% !important;

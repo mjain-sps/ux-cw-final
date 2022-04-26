@@ -4,12 +4,30 @@ const MasterContainer = styled.div``;
 
 const TopCTAPanel = styled.div`
   background-color: ${(props) => props.theme.similarShadeDarkPanel};
+  padding: 20px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+`;
+const MiddleCTAPanel = styled.div`
+  background-color: ${(props) => props.theme.similarShadeDarkPanel};
   height: 100px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   gap: 30px;
   margin-bottom: 10px;
+`;
+const SelectStudentHeader = styled.div`
+  h3 {
+    color: ${(props) => props.theme.oppositeColor};
+    margin: 20px 0px;
+    font-size: ${(props) => props.theme.fontSize.large};
+    text-align: center;
+  }
 `;
 const CTACapsule = styled.div`
   background-color: ${(props) => props.theme.oppositeColor};
@@ -27,6 +45,25 @@ const CTACapsule = styled.div`
     color: ${(props) => props.theme.background};
     margin: 0;
     font-size: ${(props) => props.theme.fontSize.medium};
+  }
+`;
+
+const CTAMiddleCapsule = styled.div`
+  background-color: ${(props) => props.theme.oppositeColor};
+  border: 1px solid ${(props) => props.theme.oppositeColor};
+  border-radius: 8px;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: ${(props) => props.theme.background};
+  cursor: pointer;
+  p {
+    color: ${(props) => props.theme.background};
+    margin: 0;
+    font-size: ${(props) => props.theme.fontSize.small};
   }
 `;
 const ChooseProfileWrapper = styled.div`
@@ -77,4 +114,7 @@ export {
   TopCTAPanel,
   MasterContainer,
   CTACapsule,
+  CTAMiddleCapsule,
+  MiddleCTAPanel,
+  SelectStudentHeader,
 };

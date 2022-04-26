@@ -183,17 +183,21 @@ const PecDisplayScreen = () => {
                 ) : (
                   <h4>
                     {language === "english"
-                      ? "Drop Cards To build an interactive card train"
+                      ? "Drag & Drop PECS from below to form sentence"
                       : "Drop Cards Para construir un tren de cartas interactivo"}
                   </h4>
                 )}
                 {/* PLAY ICON */}
-                <PlayInteractiveTrainWrapper
-                  style={{ opacity: droppedCards.length ? "1" : "0.4" }}
-                  onClick={() => handleInteractiveTrainSoundPlay()}
-                >
-                  <FontAwesomeIcon icon={faPlay} className="play-icon" />
-                </PlayInteractiveTrainWrapper>
+                {droppedCards.length ? (
+                  <PlayInteractiveTrainWrapper
+                    style={{ opacity: droppedCards.length ? "1" : "0.4" }}
+                    onClick={() => handleInteractiveTrainSoundPlay()}
+                  >
+                    <FontAwesomeIcon icon={faPlay} className="play-icon" />
+                  </PlayInteractiveTrainWrapper>
+                ) : (
+                  ""
+                )}
               </div>
             </InteractiveModeWrapper>
           ) : (
@@ -223,8 +227,12 @@ const PecDisplayScreen = () => {
                       }
                     >
                       <h4>{pec.category}</h4>
+
                       <img
+                        id={pec._id}
+                        draggable="true"
                         src={pec.picture}
+                        onDragStart={(e) => drag(e)}
                         alt={`name is ${pec.name} and category is ${pec.category}`}
                       />
                       <p>{pec.name}</p>

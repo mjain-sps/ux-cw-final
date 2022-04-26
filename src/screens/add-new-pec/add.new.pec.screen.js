@@ -70,7 +70,7 @@ const AddNewPecScreen = () => {
         <MasterComponent>
           <h4>Add New PEC</h4>
           <InputGroupContainer>
-            <label>PEC Title/name</label>
+            <label>Enter PEC name</label>
             <InputComponent
               type="text"
               name="title"
@@ -81,7 +81,7 @@ const AddNewPecScreen = () => {
           </InputGroupContainer>
           {pecsAssociated.length ? (
             <select onChange={(e) => setCategorySelected(e.target.value)}>
-              <option value="">Select Pec category</option>
+              <option value="">Select PEC category</option>
 
               {pecsAssociated.map((pec) => {
                 return (
@@ -98,7 +98,7 @@ const AddNewPecScreen = () => {
           <h6>OR Add New Category here</h6>
 
           <InputGroupContainer>
-            <label>PEC Title/name</label>
+            <label>Enter PEC Category</label>
             <InputComponent
               type="text"
               name="category"

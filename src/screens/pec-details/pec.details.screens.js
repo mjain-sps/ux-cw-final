@@ -93,7 +93,7 @@ const PecDetailsScreen = () => {
       navigate(location.state.from.pathname, { replace: true });
     }
   }, [modalConfirmation]);
-
+  console.log(location);
   return (
     <>
       {pec ? (
@@ -118,8 +118,10 @@ const PecDetailsScreen = () => {
                 </span>
               </BackButtonWrapper>
               <PecEdit>
+                Edit
                 <FontAwesomeIcon
                   icon={faEdit}
+                  style={{ marginLeft: "10px" }}
                   onClick={() =>
                     navigate(`/edit-pec/${pec._id}/${fullName}`, {
                       state: { from: location },

@@ -42,13 +42,16 @@ const ChooseProfileContainer = styled.div`
 `;
 
 const AddPecContainer = styled.div`
-  width: 90px;
+  width: 130px;
   height: 100%;
   text-align: center;
   line-height: 80px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 30px;
   color: #00e676;
+  border: 1px solid ${(props) => props.theme.background};
+  border-radius: 5px;
+  margin-left: 10px;
 `;
 export {
   MasterContainer,

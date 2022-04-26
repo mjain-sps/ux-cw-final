@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const MasterContainer = styled.div`
   position: absolute;
-  bottom: 200px;
+  top: 100px;
   left: 10px;
   height: max-content;
   border-radius: 5px;

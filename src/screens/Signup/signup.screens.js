@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonComponent from "../../components/buttoncomponent/button.components";
+import DataProtectionModal from "../../components/data-protection-modal/data.protection.modal";
 import InputComponent from "../../components/inputcomponent/input.components";
 import SpinnerComponent from "../../components/spinnercomponent/spinner.components";
 import StaticHeader from "../../components/staticheader/static.header.components";
@@ -24,6 +25,7 @@ const SignupScreen = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [validated, setValidated] = useState(false);
+  const [triggerDataProtection, setTriggerDataProtection] = useState(true);
 
   const navigate = useNavigate();
 
@@ -75,10 +77,10 @@ const SignupScreen = () => {
       name: input.fullName,
       email: input.email,
       password: input.password,
-      profiles: input.profileRequired,
+      // profiles: input.profileRequired,
     };
     registeredUser.push(payload);
-    navigate("/choose-profile");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -96,50 +98,55 @@ const SignupScreen = () => {
   }, [passwordError, emailError, nameError]);
   return (
     <>
-      <MasterContainer>
-        <StaticHeader />
-        <LoginContainer>
-          <div>
-            <h4>Signup</h4>
-          </div>
-          <InputGroupContainer>
-            <label>Full Name</label>
-            <InputComponent
-              placeholder={"Enter your full name"}
-              value={input.fullName}
-              type="text"
-              onChange={handleInputChange}
-              name="fullName"
-            />
-            <p>{nameError}</p>
-          </InputGroupContainer>
+      {triggerDataProtection ? (
+        <DataProtectionModal
+          setTriggerDataProtection={setTriggerDataProtection}
+        />
+      ) : (
+        <MasterContainer>
+          <StaticHeader />
+          <LoginContainer>
+            <div>
+              <h4>Signup</h4>
+            </div>
+            <InputGroupContainer>
+              <label>Full Name</label>
+              <InputComponent
+                placeholder={"Enter your full name"}
+                value={input.fullName}
+                type="text"
+                onChange={handleInputChange}
+                name="fullName"
+              />
+              <p>{nameError}</p>
+            </InputGroupContainer>
 
-          <InputGroupContainer>
-            <label>Email</label>
-            <InputComponent
-              placeholder={"Enter your email address"}
-              value={input.email}
-              type="email"
-              onChange={handleInputChange}
-              name="email"
-            />
-            <p>{emailError}</p>
-          </InputGroupContainer>
+            <InputGroupContainer>
+              <label>Email</label>
+              <InputComponent
+                placeholder={"Enter your email address"}
+                value={input.email}
+                type="email"
+                onChange={handleInputChange}
+                name="email"
+              />
+              <p>{emailError}</p>
+            </InputGroupContainer>
 
-          <InputGroupContainer>
-            <label>Password</label>
-            <InputComponent
-              placeholder={"Enter your password"}
-              value={input.password}
-              type="password"
-              onChange={handleInputChange}
-              name="password"
-            />
-            <p>{passwordError}</p>
-          </InputGroupContainer>
+            <InputGroupContainer>
+              <label>Password</label>
+              <InputComponent
+                placeholder={"Enter your password"}
+                value={input.password}
+                type="password"
+                onChange={handleInputChange}
+                name="password"
+              />
+              <p>{passwordError}</p>
+            </InputGroupContainer>
 
-          <InputGroupContainer>
-            <label>Profiles Required</label>
+            {/* <InputGroupContainer>
+            <label>Minimum Number of Students you have to teach?</label>
             <InputComponent
               placeholder={"Enter number of profiles required"}
               value={input.profileRequired}
@@ -147,22 +154,23 @@ const SignupScreen = () => {
               onChange={handleInputChange}
               name="profileRequired"
             />
-          </InputGroupContainer>
-          <ButtonComponent
-            type="button"
-            onClick={handleSignup}
-            disabled={validated ? false : true}
-            backgroundColor="red"
-            name="login-button"
-          >
-            Signup
-          </ButtonComponent>
-          {/* <SpinnerComponent /> */}
-          <Footer>
-            Already have an account? <Link to="/">Login</Link>
-          </Footer>
-        </LoginContainer>
-      </MasterContainer>
+          </InputGroupContainer> */}
+            <ButtonComponent
+              type="button"
+              onClick={handleSignup}
+              disabled={validated ? false : true}
+              backgroundColor="red"
+              name="login-button"
+            >
+              Signup
+            </ButtonComponent>
+            {/* <SpinnerComponent /> */}
+            <Footer>
+              Already have an account? <Link to="/">Login</Link>
+            </Footer>
+          </LoginContainer>
+        </MasterContainer>
+      )}
     </>
   );
 };

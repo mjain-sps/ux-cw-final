@@ -1,18 +1,24 @@
 import {
+  faBrush,
+  faLanguage,
   faPlus,
   faRightFromBracket,
   faTable,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { currentTheme } from "../../App";
 import ToastComponent from "../../components/toast-component/toast.components";
 import { studentProfileData } from "../../data/student.profile.data";
 import {
   ChooseProfileWrapper,
   CTACapsule,
+  CTAMiddleCapsule,
   MasterContainer,
+  MiddleCTAPanel,
   ProfileCards,
+  SelectStudentHeader,
   TopCTAPanel,
 } from "./choose.profile.styles";
 
@@ -30,7 +36,8 @@ const ChooseStudentProfile = () => {
       }, 2000);
     }
   }, [location]);
-  console.log(location);
+
+  const { theme, setTheme, language, setLanguage } = useContext(currentTheme);
   return (
     <>
       {displayToast ? (
@@ -50,7 +57,25 @@ const ChooseStudentProfile = () => {
             }
           >
             <FontAwesomeIcon icon={faPlus} />
-            <p>Add Profile</p>
+            <p>Add Student</p>
+          </CTACapsule>
+
+          <CTACapsule
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            <FontAwesomeIcon icon={faBrush} />
+            <p> {theme === "light" ? "Dark Theme" : "Light Theme"}</p>
+          </CTACapsule>
+
+          <CTACapsule
+            onClick={() =>
+              language === "english"
+                ? setLanguage("spanish")
+                : setLanguage("english")
+            }
+          >
+            <FontAwesomeIcon icon={faLanguage} />
+            <p> {language === "english" ? "Spanish" : "English"}</p>
           </CTACapsule>
 
           <CTACapsule
@@ -69,6 +94,10 @@ const ChooseStudentProfile = () => {
             <p>Logout</p>
           </CTACapsule>
         </TopCTAPanel>
+
+        <SelectStudentHeader>
+          <h3>Select Student</h3>
+        </SelectStudentHeader>
         {studentProfileData.length ? (
           <ChooseProfileWrapper>
             {studentProfileData.map((profile, index) => {

@@ -21,9 +21,7 @@ const StudentHelpCTAPanel = ({ pecLevel, setQuickActionCTAImage }) => {
   return (
     <StudenPaneWrapper>
       <h4>
-        {language === "english"
-          ? "Quick Action Panel"
-          : "Panel de llamada a la acción rápida"}
+        {language === "english" ? "Quick Action PEC" : "PEC de acción rápida"}
       </h4>
       {pecLevel === 1 ? (
         <MasterContainerPecLevel1>

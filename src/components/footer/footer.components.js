@@ -1,6 +1,7 @@
 import {
   faCamera,
   faChevronCircleLeft,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
@@ -59,9 +60,11 @@ const FooterComponent = ({
           )}
         </ChooseProfileContainer>
         <AddPecContainer>
+          <span>PEC</span>
           <FontAwesomeIcon
             icon={faCamera}
             onClick={() => setCameraToggle(true)}
+            style={{ marginLeft: "5px" }}
           />
         </AddPecContainer>
       </MasterContainer>

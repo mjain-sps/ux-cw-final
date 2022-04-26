@@ -32,7 +32,7 @@ const CameraComponent = ({ setCameraToggle, imgFile, setPictureAccepted }) => {
   return (
     <>
       <MasterContainer>
-        <img src={imgFile} />
+        <img src={imgFile} className={pictureClicked ? "picture-click" : ""} />
         <FontAwesomeIcon
           icon={faTimes}
           className="close-camera"

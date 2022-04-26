@@ -55,6 +55,7 @@ const FooterSection = styled.div`
   background-color: ${(props) => props.theme.footer.bg};
   width: 100%;
   height: 100px;
+  gap: 20px;
 `;
 const BackButtonWrapper = styled.div`
   span {
@@ -72,7 +73,7 @@ const PecEdit = styled.div`
   color: #76ff03;
   font-size: 48px;
   position: absolute;
-  left: 20%;
+  left: 18%;
   cursor: pointer;
 `;
 const SoundPlay = styled.div`

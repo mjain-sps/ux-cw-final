@@ -14,7 +14,7 @@ const MasterComponent = styled.div`
   }
   h4 {
     background-color: ${(props) => props.theme.similarShadeDarkPanel};
-    color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.oppositeColor};
     font-size: ${(props) => props.theme.fontSize.large};
     width: 100%;
     padding: 8px;
