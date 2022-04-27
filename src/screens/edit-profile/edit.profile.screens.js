@@ -183,7 +183,6 @@ const EditProfile = () => {
     }
   }, [modalConfirmation]);
 
-  console.log(modalConfirmation);
   return (
     <>
       <MasterContainer>
@@ -192,7 +191,7 @@ const EditProfile = () => {
         </div>
 
         <DeleteStudentProfile onClick={() => setDisplayModal(true)}>
-          <span>Delete</span>
+          <span>Delete...</span>
           <FontAwesomeIcon icon={faTrash} />
         </DeleteStudentProfile>
 

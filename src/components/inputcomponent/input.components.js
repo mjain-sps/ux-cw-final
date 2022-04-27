@@ -10,6 +10,7 @@ const InputComponent = ({
   disabled,
   min,
   max,
+  onKeyDown,
 }) => {
   return (
     <MasterContainer>
@@ -22,6 +23,7 @@ const InputComponent = ({
         disabled={disabled ? true : false}
         min={min}
         max={max}
+        onKeyDown={onKeyDown}
       />
     </MasterContainer>
   );

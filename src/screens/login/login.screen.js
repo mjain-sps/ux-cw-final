@@ -75,6 +75,19 @@ const LoginScreen = () => {
     // }
   };
 
+  const handleLoginThroughEnter = (e) => {
+    if (e.key === "Enter") {
+      const userFound = registeredUser.find((usr) => usr.email === input.email);
+      if (userFound) {
+        if (userFound.password === input.password) {
+          navigate("/choose-profile", { state: { from: location } });
+        } else {
+          setCredentialErrors("Invalid credentials");
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if (input.email && input.password && !emailError && !passwordError) {
       setValidated(true);
@@ -130,6 +143,7 @@ const LoginScreen = () => {
               type="password"
               onChange={handleInputChange}
               name="password"
+              onKeyDown={handleLoginThroughEnter}
             />
             <p>{passwordError}</p>
           </InputGroupContainer>

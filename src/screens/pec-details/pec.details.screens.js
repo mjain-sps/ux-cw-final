@@ -113,21 +113,19 @@ const PecDetailsScreen = () => {
                 <span className="back-button">
                   <FontAwesomeIcon
                     icon={faChevronLeft}
-                    onClick={() => navigate(location.state.from.pathname)}
+                    onClick={() => navigate(`/pec-display/${fullName}`)}
                   />
                 </span>
               </BackButtonWrapper>
-              <PecEdit>
+              <PecEdit
+                onClick={() =>
+                  navigate(`/edit-pec/${pec._id}/${fullName}`, {
+                    state: { from: location },
+                  })
+                }
+              >
                 Edit
-                <FontAwesomeIcon
-                  icon={faEdit}
-                  style={{ marginLeft: "10px" }}
-                  onClick={() =>
-                    navigate(`/edit-pec/${pec._id}/${fullName}`, {
-                      state: { from: location },
-                    })
-                  }
-                />
+                <FontAwesomeIcon icon={faEdit} style={{ marginLeft: "10px" }} />
               </PecEdit>
               <SoundPlay>
                 <button onClick={handleSoundPlay}>

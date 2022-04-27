@@ -59,13 +59,9 @@ const FooterComponent = ({
             ""
           )}
         </ChooseProfileContainer>
-        <AddPecContainer>
+        <AddPecContainer onClick={() => setCameraToggle(true)}>
           <span>PEC</span>
-          <FontAwesomeIcon
-            icon={faCamera}
-            onClick={() => setCameraToggle(true)}
-            style={{ marginLeft: "5px" }}
-          />
+          <FontAwesomeIcon icon={faCamera} style={{ marginLeft: "5px" }} />
         </AddPecContainer>
       </MasterContainer>
       {cameraToggle ? (
